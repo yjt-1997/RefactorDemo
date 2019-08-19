@@ -8,18 +8,25 @@ public class BackstageItemHandler implements ItemHandler {
             item.quality = 0;
             return;
         }
-        if (item.quality < 50) {
+        addQualityByQualityAndSellIn(item);
+    }
+
+
+    public void addQualityByQualityAndSellIn(Item item) {
+        if (item.quality >= 50) {
+            return;
+        }
+        if (item.quality <= 48 && item.sellIn < 6) {
+            item.addQuality(3);
+        } else if (item.quality <= 49 && isSellInIsIn6And11(item)) {
+            item.addQuality(2);
+        } else {
             item.addQuality();
-            if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    item.addQuality();
-                }
-            }
-            if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    item.addQuality();
-                }
-            }
         }
     }
+
+    public boolean isSellInIsIn6And11(Item item) {
+        return item.sellIn >= 6 && item.sellIn < 11;
+    }
+
 }
