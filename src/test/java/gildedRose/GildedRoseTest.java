@@ -95,4 +95,14 @@ public class GildedRoseTest {
 
         assertEquals(gildedRose.items[0].toString(), ItemName.Backstage.getName() + ", -2, 0");
     }
+
+    @Test
+    public void should_one_sellIn_and_quality_when_given_name_Aged_sellIn_lessThan_0() {
+        Item item = new Item(ItemName.Aged.getName(), -1, 40);
+        GildedRose gildedRose = new GildedRose(new Item[]{item});
+
+        gildedRose.updateQuality();
+
+        assertEquals(gildedRose.items[0].toString(), ItemName.Aged.getName() + ", -2, 42");
+    }
 }

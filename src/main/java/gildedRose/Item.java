@@ -14,6 +14,18 @@ public class Item {
         this.quality = quality;
     }
 
+    public void addQuality(){
+        this.quality++;
+    }
+
+    public void subQuality(){
+        this.quality--;
+    }
+
+    public void subSellIn(){
+        this.sellIn--;
+    }
+
    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
