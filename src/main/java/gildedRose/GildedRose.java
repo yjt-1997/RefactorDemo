@@ -9,52 +9,55 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!isAged(items[i])
-                    && !isBackstage(items[i])) {
-                if (items[i].quality > 0) {
-                    if (!isSulfuras(items[i])) {
-                        items[i].subQuality();
-                    }
+            updateItem(items[i]);
+        }
+    }
+
+    private void updateItem(Item item) {
+        if (!isAged(item) && !isBackstage(item)) {
+            if (item.quality > 0) {
+                if (!isSulfuras(item)) {
+                    item.subQuality();
                 }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].addQuality();
+            }
+        } else {
+            if (item.quality < 50) {
+                item.addQuality();
 
-                    if (isBackstage(items[i])) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].addQuality();
-                            }
+                if (isBackstage(item)) {
+                    if (item.sellIn < 11) {
+                        if (item.quality < 50) {
+                            item.addQuality();
                         }
+                    }
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].addQuality();
-                            }
+                    if (item.sellIn < 6) {
+                        if (item.quality < 50) {
+                            item.addQuality();
                         }
                     }
                 }
             }
+        }
 
-            if (!isSulfuras(items[i])) {
-                items[i].subSellIn();
-            }
+        if (!isSulfuras(item)) {
+            item.subSellIn();
+        }
 
-            if (items[i].sellIn < 0) {
-                if (!isAged(items[i])) {
-                    if (!isBackstage(items[i])) {
-                        if (items[i].quality > 0) {
-                            if (!isSulfuras(items[i])) {
-                                items[i].subQuality();
-                            }
+        if (item.sellIn < 0) {
+            if (!isAged(item)) {
+                if (!isBackstage(item)) {
+                    if (item.quality > 0) {
+                        if (!isSulfuras(item)) {
+                            item.subQuality();
                         }
-                    } else {
-                        items[i].quality = 0;
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        items[i].addQuality();
-                    }
+                    item.quality = 0;
+                }
+            } else {
+                if (item.quality < 50) {
+                    item.addQuality();
                 }
             }
         }
