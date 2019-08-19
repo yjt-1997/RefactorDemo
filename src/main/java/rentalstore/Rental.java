@@ -1,6 +1,6 @@
 package rentalstore;
 
-public class Rental {
+public abstract class Rental {
     private Movie movie;
     private int dayRented;
 
@@ -8,6 +8,8 @@ public class Rental {
         this.movie = movie;
         this.dayRented = dayRented;
     }
+
+    abstract Double getAmount();
 
     public Movie getMovie() {
         return movie;

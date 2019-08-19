@@ -17,4 +17,5 @@ public class JobItemTest {
         JobItem jobItem = new JobItem(10, 5, null, false);
         assertEquals(50, jobItem.getTotalPrice());
     }
+
 }
